@@ -1,19 +1,6 @@
 ##Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 ##SPDX-License-Identifier: MIT-0
 version: 0.2
-{
-    "Effect": "Allow",
-    "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:GetObjectVersion",
-        "s3:GetBucketAcl",
-        "s3:GetBucketLocation"
-    ],
-    "Resource": [
-        "arn:aws:s3:::${BUCKET_NAME}*"
-    ]
-},
 phases:
   install:
     commands:
