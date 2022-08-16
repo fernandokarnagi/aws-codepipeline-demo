@@ -27,7 +27,7 @@ cache:
 
 reports:
   # ARN of the Codebuild Report created in Cloudformation
-  arn:aws:codebuild:us-east-1:111111111111:report-group/OwaspReportGroup-ABC123abc987:
+  arn:aws:codebuild:ap-southeast-1:275083508015:report-group/OwaspReportGroup-ABC123abc987:
     files:
       - dependency-check-junit.xml
     file-format: JunitXml
