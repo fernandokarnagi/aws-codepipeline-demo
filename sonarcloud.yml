@@ -1,33 +1,28 @@
 version: 0.2
+
 env:
   variables:
-    build_version: "0.1"
+    SONAR_VER: sonar-scanner-cli-4.0.0.1744-linux
+    SONAR_HOME: /opt/sonar-scanner
+    # PATH: $PATH:$SONAR_HOME/bin
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 10
     commands:
-      - echo "Install"
-      - apt-get update
-      - apt-get install -y jq
-      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-      - unzip ./sonar-scanner-cli-4.6.2.2472-linux.zip
-      - export PATH=$PATH:./sonar-scanner-4.6.2.2472-linux/bin/
-  pre_build:
-    commands:
-      - echo "Pre Build"
-      - echo $JAVA_HOME
-      - sonar-scanner -Dsonar.organization=NCS Sample Project -Dsonar.projectKey=NCS Sonar Cloud -Dsonar.sources=src -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=03a13bff1fbd82ea6f6b3d761a4bf759aad324ec
-      - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=NCS Sonar Cloud > analysis.json
-      - cat analysis.json
+      - echo Install started on `date`
+      - test -d $SONAR_HOME && echo skip install sonar || apt-get install --no-install-recommends -y wget unzip
+      - test -d $SONAR_HOME || cd /tmp
+      - test -d $SONAR_HOME || wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${SONAR_VER}.zip
+      - test -d $SONAR_HOME || unzip ${SONAR_VER}.zip
+      - test -d $SONAR_HOME || mv sonar-scanner-*-linux $SONAR_HOME
   build:
     commands:
-      - echo "Running unit test"
-      - ls -la
-  post_build:
-    commands:
-      - echo Build completed on `date`
+      - echo Build started on `date`
+      - export PATH=${PATH}:${SONAR_HOME}/bin
+      - sonar-scanner -h
 
-artifacts:
-  files:
-    - gradle.properties
+cache:
+  paths:
+    - '/opt/sonar-scanner/**/*'
