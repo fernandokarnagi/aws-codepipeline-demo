@@ -11,11 +11,11 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
-      - echo Install started on `date`
-      - test -d $SONAR_HOME && echo skip install sonar || apt-get install --no-install-recommends -y wget unzip
-      - test -d $SONAR_HOME || cd /tmp
-      - test -d $SONAR_HOME || wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${SONAR_VER}.zip --no-check-certificate
-      - test -d $SONAR_HOME || unzip ${SONAR_VER}.zip
+      #- echo Install started on `date`
+      #- test -d $SONAR_HOME && echo skip install sonar || apt-get install --no-install-recommends -y wget unzip
+      #- test -d $SONAR_HOME || cd /tmp
+      #- test -d $SONAR_HOME || wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${SONAR_VER}.zip --no-check-certificate
+      #- test -d $SONAR_HOME || unzip ${SONAR_VER}.zip
       - test -d $SONAR_HOME || mv sonar-scanner-*-linux $SONAR_HOME
   build:
     commands:
