@@ -23,6 +23,12 @@ phases:
       - export PATH=${PATH}:${SONAR_HOME}/bin
       - sonar-scanner -h
 
+    commands:
+      - sonar-scanner -Dsonar.projectKey=TestingSonar  -Dsonar.sources=src -Dsonar.host.url=http://52.76.195.58:9000 -Dsonar.login=sqp_6cc25ab2e332f0f5db98eb3a1d6d4a54151d2398
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=TestingSonar > analysis.json
+      - cat analysis.json
+      
 cache:
   paths:
     - '/opt/sonar-scanner/**/*'
