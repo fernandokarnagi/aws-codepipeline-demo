@@ -26,8 +26,8 @@ phases:
     commands:
       - sonar-scanner -Dsonar.projectKey=$PROJECTKEY -Dsonar.sources=src -Dsonar.host.url=$SONARQUBE_ENDPOINT -Dsonar.login=$SONARCLOUD_TOKEN
       - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECTKEY > analysis.json
-      - cat analysis.json
+      #- curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$PROJECTKEY > analysis.json
+      #- cat analysis.json
       
 cache:
   paths:
