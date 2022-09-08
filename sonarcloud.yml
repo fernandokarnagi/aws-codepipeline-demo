@@ -11,17 +11,17 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
-      - echo Install started on `date`
-      - test -d $SONAR_HOME && echo skip install sonar || apt-get install --no-install-recommends -y wget unzip
-      - test -d $SONAR_HOME || cd /app/sonarcli
-      - test -d $SONAR_HOME || wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${SONAR_VER}.zip --no-check-certificate
-      - test -d $SONAR_HOME || unzip ${SONAR_VER}.zip
-      - test -d $SONAR_HOME || mv sonar-scanner-*-linux $SONAR_HOME
+      #- echo Install started on `date`
+      #- test -d $SONAR_HOME && echo skip install sonar || apt-get install --no-install-recommends -y wget unzip
+      #- test -d $SONAR_HOME || cd /app/sonarcli
+      #- test -d $SONAR_HOME || wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/${SONAR_VER}.zip --no-check-certificate
+      #- test -d $SONAR_HOME || unzip ${SONAR_VER}.zip
+      #- test -d $SONAR_HOME || mv sonar-scanner-*-linux $SONAR_HOME
   build:
     commands:
-      - echo Build started on `date`
-      - export PATH=${PATH}:${SONAR_HOME}/bin
-      - sonar-scanner -h
+      #- echo Build started on `date`
+      #- export PATH=${PATH}:${SONAR_HOME}/bin
+      #- sonar-scanner -h
 
     commands:
       - sonar-scanner -Dsonar.projectKey=$PROJECTKEY -Dsonar.sources=src -Dsonar.host.url=$SONARQUBE_ENDPOINT -Dsonar.login=$SONARCLOUD_TOKEN
