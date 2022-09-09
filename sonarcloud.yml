@@ -11,6 +11,7 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
+      - echo Printing path
       - echo $PATH
   build:
     commands:
